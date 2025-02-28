@@ -13,19 +13,23 @@ useEffect(() => {
   .then((data) => setTransactions(data));
 }, []);
 
-const handleAddTransaction =(newTransaction) => {
+const handleAddTransaction = (newTransaction) => {
   fetch('http://localhost:8001/transactions', {
     method: 'POST',
     headers: {
-      'Content-Type': "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(newTransaction),
   })
-  .then((response) => response.json())
-  .then((addedTranstaction) => {
-    setTransactions([...transactions, addedTranstaction]);
-  });
+    .then((response) => response.json())
+    .then((addedTransaction) => {
+      setTransactions((prevTransactions) => [
+        ...prevTransactions,
+        addedTransaction,
+      ]);
+    });
 };
+
 
 const handleSearch =(event) => {
 setSearchItem(event.target.value);
@@ -38,7 +42,7 @@ const filteredTransactions = transactions.filter((transaction) =>
   return (
     <div>
       <Search onChange={handleSearch}/>
-      <AddTransactionForm onAddTransaction={handleAddTransaction} />
+      <AddTransactionForm addTransaction={handleAddTransaction} />
       <TransactionsList transactions={filteredTransactions} />
     </div>
   );
