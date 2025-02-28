@@ -4,10 +4,12 @@ import Search from "./Search";
 import AddTransactionForm from "./AddTransactionForm";
 
 function AccountContainer() {
+
+  
   return (
     <div>
       <Search />
-      <AddTransactionForm />
+      <AddTransactionForm  />
       <TransactionsList />
     </div>
   );
