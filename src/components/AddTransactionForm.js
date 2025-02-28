@@ -15,9 +15,15 @@ function AddTransactionForm(addTransaction) {
     }));
   };
 
+  function handleSubmit(event) {
+    event.preventDefault();
+    addTransaction(formData);
+    setFormData({date: '', description: '', category: '', amount: ''});
+  };
+
   return (
     <div className="ui segment">
-      <form className="ui form" onChange={}>
+      <form className="ui form" onSubmit={handleSubmit}>
         <div className="inline fields">
           <input type="date"
           name="date"
